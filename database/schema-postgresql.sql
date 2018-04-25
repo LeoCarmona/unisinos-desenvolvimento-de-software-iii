@@ -1,0 +1,38 @@
+drop schema public cascade;
+create schema public;
+
+CREATE TABLE IF NOT EXISTS public.CUSTOMER (
+    ID                 BIGSERIAL       NOT NULL PRIMARY KEY,
+    EMAIL              VARCHAR(255)    NOT NULL UNIQUE,
+    PASSWORD           VARCHAR(255)    NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS public.PRODUCT (
+    ID                 BIGSERIAL       NOT NULL PRIMARY KEY,
+    TITLE              VARCHAR(255)    NOT NULL,
+    PRICE              DECIMAL         NOT NULL,
+	DESCRIPTION        TEXT            NOT NULL,
+    IMAGE              VARCHAR(255)    NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS public.BASKET (
+    ID                 BIGSERIAL       NOT NULL PRIMARY KEY,
+    CUSTOMER_ID        BIGSERIAL       NOT NULL,
+	PRODUCT_ID         BIGSERIAL       NOT NULL,
+	QUANTITY           INTEGER         NOT NULL,
+	
+	UNIQUE (CUSTOMER_ID, PRODUCT_ID),
+	
+	FOREIGN KEY (CUSTOMER_ID) REFERENCES public.CUSTOMER(ID),
+	FOREIGN KEY (PRODUCT_ID)  REFERENCES public.PRODUCT(ID)
+);
+
+CREATE TABLE IF NOT EXISTS public.SALE (
+    ID                 BIGSERIAL       NOT NULL PRIMARY KEY,
+	CUSTOMER_ID        BIGSERIAL       NOT NULL,
+	RESPONSE           TEXT            NOT NULL,
+	AMOUNT             DECIMAL         NOT NULL,
+	DATE_CREATED       TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	
+	FOREIGN KEY (CUSTOMER_ID) REFERENCES public.CUSTOMER(ID)
+);

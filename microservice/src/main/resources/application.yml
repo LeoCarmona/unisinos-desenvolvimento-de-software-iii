@@ -1,0 +1,17 @@
+spring.jackson.serialization.write_dates_as_timestamps: false
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gamestore
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+
+server:
+  port: 8080
