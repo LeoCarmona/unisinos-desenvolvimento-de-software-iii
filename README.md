@@ -19,18 +19,18 @@ Alunos:
 Foi Utilizada estrutura de micro-serviços para desenvolver o back-end
 
 ## Back-end
-* Java (Spring Boot);
+* Java 8 (Spring Boot 2.0.1.RELEASE);
 
 ## Front-End
-* Javascript + JQuery + Bootstrap;
+* Bootstrap 4 + JQuery 1.11.1 + Javascript;
 	
 ## Banco de Dados
-* Postgresql;
+* PostgreSQL 10;
 
 # Requisitos para iniciar o projeto
 
 * Possuir o Java 1.8 ou superior instalado;
-* Possuir o banco de dados Postgree SQL instalado;
+* Possuir o banco de dados Postgree SQL 10 instalado;
 
 ## Clonar o projeto
 
@@ -66,4 +66,3 @@ Após o back-end estar apto a receber chamadas, abra o arquivo index.html dentro
 * fabiocastilhoss@gmail.com
 * pauloalara@gmail.com
 * lcdesenv@gmail.com
-
