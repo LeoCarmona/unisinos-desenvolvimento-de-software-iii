@@ -17,10 +17,12 @@ public class CustomerCreateResponse {
 
     private Long   id;
     private String email;
+    private String name;
 
     public CustomerCreateResponse(Customer customer) {
         this.id = customer.getId();
         this.email = customer.getEmail();
+        this.name = customer.getName();
     }
 
 }

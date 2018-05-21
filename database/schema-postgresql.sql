@@ -4,6 +4,7 @@ create schema public;
 CREATE TABLE IF NOT EXISTS public.CUSTOMER (
     ID                 BIGSERIAL       NOT NULL PRIMARY KEY,
     EMAIL              VARCHAR(255)    NOT NULL UNIQUE,
+	NAME               VARCHAR(255)    NOT NULL,
     PASSWORD           VARCHAR(255)    NOT NULL
 );
 

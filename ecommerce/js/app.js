@@ -53,11 +53,27 @@
 })(jQuery, document, window);
 
 function start() {
+	loadHeader();
+
 	switch (app.getPage()) {
 		case 'home':
 			productService.createProductCardList(document.getElementById('product-list'));
 			break;
 	}
+}
+
+function loadHeader() {
+	let session = this.session.data();
+
+	if (session.token == null) {
+		return;
+	}
+
+	let loginElement = document.getElementById('header.login');
+	let logoutElement = htmlService.htmlToElement('<a href="index.html" onclick="session.logout()">Logout <small>(' + session.customer.email + ')</small></a>');
+
+	loginElement.parentNode.insertBefore(logoutElement, loginElement.nextSibling);
+	loginElement.remove();
 }
 
 // ==================================================
@@ -147,10 +163,28 @@ var htmlService = {
 
 };
 
-var loginService = {
+var customerService = {
 
-	isLogged: function() {
-
+	register: function() {
+		$.ajax({
+			url: API_URL + '/customers',
+			method: 'POST',
+			data: JSON.stringify({
+				email : document.getElementById('customer.register.email').value,
+				name : document.getElementById('customer.register.name').value,
+				password : document.getElementById('customer.register.password').value
+			}),
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+				xhr.setRequestHeader('Content-Type', 'application/json');
+			},
+			success: function (data) {
+				toastr.success('Cliente cadastrado com sucesso!');
+			},
+			error: function (error) {
+				toastr.error('Ocorreu um erro ao cadastrar o cliente!');
+			}
+		});
 	}
 
 }
@@ -171,11 +205,58 @@ var app = {
 
 var session = {
 
-	token: null,
-	expiresIn: null,
+	data: function() {
+		let _session = localStorage.getItem('session');
 
-	isLogged: function() {
-		return false;
+		if (_session == null) {
+			return session.clear();
+		}
+
+		return JSON.parse(_session);
+	},
+
+	login: function() {
+		$.ajax({
+			url: API_URL + '/login',
+			method: 'POST',
+			data: JSON.stringify({
+				username : document.getElementById('customer.login.email').value,
+				password : document.getElementById('customer.login.password').value
+			}),
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+				xhr.setRequestHeader('Content-Type', 'application/json');
+			},
+			success: function (data) {
+				localStorage.setItem('session', JSON.stringify({
+					token : data.token,
+					customer : data.customer
+				}));
+
+				$(".popup").toggleClass("active");
+				loadHeader();
+
+				toastr.success('Login realizado com sucesso!');
+			},
+			error: function (error) {
+				if (error.status == 401) {
+					toastr.error('O login ou senha estão incorretos!');
+				} else {
+					toastr.error('Ocorreu um erro ao ao se logar!');
+				}
+			}
+		});
+	},
+
+	logout: function() {
+		let _session = {
+			token : null,
+			customer : null
+		};
+
+		localStorage.setItem('session', JSON.stringify(_session));
+
+		return _session;
 	}
 
 }
