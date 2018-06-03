@@ -3,6 +3,7 @@ package com.gamestore.microservice.service;
 import com.gamestore.microservice.data.repository.jdbc.BasketJdbcRepository;
 import com.gamestore.microservice.data.rest.basket.BasketAddProductRequest;
 import com.gamestore.microservice.data.rest.basket.BasketAddProductResponse;
+import com.gamestore.microservice.data.rest.basket.BasketProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,10 @@ public class BasketService {
         response.setBasketItems(this.basketJdbcRepository.getBasketItemsCount(request.getCustomerId()));
 
         return response;
+    }
+
+    public BasketProductResponse customerProducts(Long customerId) {
+        return this.basketJdbcRepository.customerProducts(customerId);
     }
 
 }

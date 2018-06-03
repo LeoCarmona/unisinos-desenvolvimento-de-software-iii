@@ -42,6 +42,8 @@ public class SessionManager {
                 customer.setName(rs.getString("name"));
                 customer.setEmail(rs.getString("email"));
 
+                session.setQuantityItens(this.jdbcTemplate.queryForObject("select count(*) from basket where customer_id = " + customer.getId(), Integer.class));
+
                 this.session.put(session.getToken(), session);
 
                 return session;
@@ -54,7 +56,7 @@ public class SessionManager {
     public Session checkAuthorization(HttpServletRequest request, Function<Session, Boolean> function) throws UnauthorizedException {
         Session session = this.getSession(request);
 
-        if (Boolean.TRUE == function.apply(session)) {
+        if (session != null && Boolean.TRUE == function.apply(session)) {
             return session;
         }
 

@@ -10,6 +10,7 @@ public class Session {
 
     private String   token;
     private Customer customer;
+    private Integer  quantityItens;
 
     /**
      * @author leonardo.carmona

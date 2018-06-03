@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+	<meta app="page" content="cart">
 
 	<title>Lucius KeyStore | Carrinho</title>
 
@@ -38,9 +39,9 @@
 
 				<div class="right-section pull-right">
 					<a href="cart.html" class="cart">
-						<i class="icon-cart"></i> 0 itens no carrinho</a>
-					<a href="#">Logout
-						<small>(leocarmona_@outlook.com)</small>
+						<i class="icon-cart"></i>Itens no carrinho</a>
+					<a href="index.html" onclick="session.logout()">Logout
+						<small><span id="logout.email"></span></small>
 					</a>
 				</div>
 			</div>
@@ -59,92 +60,14 @@
 								<th class="action"></th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td class="product-name">
-									<div class="product-thumbnail">
-										<img src="dummy/cart-thumb-1.jpg" alt="">
-									</div>
-									<div class="product-detail">
-										<h3 class="product-title">GTA V</h3>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure nobis architecto dolorum, alias laborum sit odit,
-											saepe expedita similique eius enim quasi obcaecati voluptates, autem eveniet ratione veniam omnis modi.</p>
-									</div>
-								</td>
-								<td class="product-price">$150.00</td>
-								<td class="product-qty">
-									<select name="#">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-								</td>
-								<td class="product-total">$150.00</td>
-								<td class="action">
-									<a href="#">
-										<i class="fa fa-times"></i>
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="product-name">
-									<div class="product-thumbnail">
-										<img src="dummy/cart-thumb-2.jpg" alt="">
-									</div>
-									<div class="product-detail">
-										<h3 class="product-title">Big Game Hunter</h3>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure nobis architecto dolorum, alias laborum sit odit,
-											saepe expedita similique eius enim quasi obcaecati voluptates, autem eveniet ratione veniam omnis modi.</p>
-									</div>
-								</td>
-								<td class="product-price">$150.00</td>
-								<td class="product-qty">
-									<select name="#">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-								</td>
-								<td class="product-total">$150.00</td>
-								<td class="action">
-									<a href="#">
-										<i class="fa fa-times"></i>
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="product-name">
-									<div class="product-thumbnail">
-										<img src="dummy/cart-thumb-3.jpg" alt="">
-									</div>
-									<div class="product-detail">
-										<h3 class="product-title">Meal Gear Solid</h3>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure nobis architecto dolorum, alias laborum sit odit,
-											saepe expedita similique eius enim quasi obcaecati voluptates, autem eveniet ratione veniam omnis modi.</p>
-									</div>
-								</td>
-								<td class="product-price">$150.00</td>
-								<td class="product-qty">
-									<select name="#">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-								</td>
-								<td class="product-total">$150.00</td>
-								<td class="action">
-									<a href="#">
-										<i class="fa fa-times"></i>
-									</a>
-								</td>
-							</tr>
+						<tbody id="product-list">
 						</tbody>
 					</table>
 					<div class="cart-total">
 						<center>
 						<p class="total">
 							<strong>Total</strong>
-							<span class="num">$450.00</span>
+							<span class="num" id="basket.total"></span>
 						</p>
 						<p>
 							<a href="index.html" class="button muted">Continuar Comprando</a>
