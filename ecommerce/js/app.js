@@ -56,9 +56,6 @@ function start() {
 	loadHeader();
 
 	switch (app.getPage()) {
-		case 'home':
-			productService.createProductCardList(document.getElementById('product-list'));
-			break;
 		case 'cart':
 			basketService.createBasketList();
 			break;
@@ -71,6 +68,8 @@ function loadHeader() {
 	if (session.token == null) {
 		return;
 	}
+	
+	console.log(app.getPage());
 
 	switch (app.getPage()) {
 		case 'home':
@@ -136,30 +135,6 @@ var productClient = {
 // ==================================================
 // Services
 // ==================================================
-
-var productService = {
-
-	createProductCardList: function (parentElement) {
-		productClient.findAll(function (data) {
-			for (var i = 0; i < data.length; i++) {
-				parentElement.append(htmlService.htmlToElement(
-					'<div class="product">' +
-					'	<div class="inner-product">' +
-					'		<div class="figure-image">' +
-					'			<a href="single.html"><img src="' + data[i].image + '" alt="Game 1"></a>' +
-					'		</div>' +
-					'		<h3 class="product-title"><a href="#">' + data[i].title + '</a></h3>' +
-					'		<small class="price">R$ ' + data[i].price.toFixed(2) + '</small>' +
-					'		<p>' + data[i].description + '</p>' +
-					'       <center><button class="button" onclick="basketService.add(' + data[i].id + ', 1)">Adicionar ao Carrinho</button></center>' +
-					'	</div>' +
-					'</div>'
-				))
-			};
-		});
-	}
-
-};
 
 var htmlService = {
 
@@ -303,9 +278,9 @@ var basketService = {
 var app = {
 
 	getPage: function () {
-		let page = document.head.querySelector("meta[app=page]");
+		let page = document.getElementById('app.page').getAttribute('content');
 
-		return page ? page.content : '';
+		return page ? page : '';
 	}
 
 };
@@ -344,9 +319,9 @@ var session = {
 					customer: data.customer,
 					itensQuantity: data.itensQuantity
 				}));
-
+				location.reload();
+				loadHeader();
 				// $(".popup").toggleClass("active");
-				// loadHeader();
 				// toastr.success('Login realizado com sucesso!');
 			},
 			error: function (error) {

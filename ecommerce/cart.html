@@ -26,6 +26,9 @@
 
 <body>
 
+
+	<div id="app.page" content="cart"></div>
+
 	<div id="site-content">
 		<div class="site-header">
 			<div class="container">
@@ -41,7 +44,9 @@
 					<a href="cart.html" class="cart">
 						<i class="icon-cart"></i>Itens no carrinho</a>
 					<a href="index.html" onclick="session.logout()">Logout
-						<small><span id="logout.email"></span></small>
+						<small>
+							<span id="logout.email"></span>
+						</small>
 					</a>
 				</div>
 			</div>
@@ -65,18 +70,40 @@
 					</table>
 					<div class="cart-total">
 						<center>
-						<p class="total">
-							<strong>Total</strong>
-							<span class="num" id="basket.total"></span>
-						</p>
-						<p>
-							<a href="index.html" class="button muted">Continuar Comprando</a>
-							<a href="#" class="button">Finalizar e Pagar</a>
-						</p></center>
+							<p class="total">
+								<strong>Total</strong>
+								<span class="num" id="basket.total"></span>
+							</p>
+							<p>
+								<a href="index.html" class="button muted">Continuar Comprando</a>
+								<a href="#" class="button login-button">Finalizar e Pagar</a>
+							</p>
+						</center>
 					</div>
 				</div>
 			</div>
 		</main>
+
+		<div class="overlay"></div>
+
+	<div class="auth-popup popup">
+			<a href="#" class="close">
+				<i class="fa fa-times"></i>
+			</a>
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="section-title">Finalizar Compras</h2>
+					<form action="#">
+						<input type="text" placeholder="Nome">
+						<input type="text" placeholder="Número do Cartão">
+						<input type="text" placeholder="Mês">
+						<input type="text" placeholder="Ano">
+						<input type="text" placeholder="CVV">
+						<input type="submit" value="Finalizar" onclick="">
+					</form>
+				</div>
+			</div>
+		</div>
 
 		<div class="site-footer">
 			<center>

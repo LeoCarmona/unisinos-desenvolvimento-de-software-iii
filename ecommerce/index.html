@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>=
+<html ng-app="homeModule" lang="en">
 
 <head>
 	<meta charset="UTF-8">
@@ -23,8 +23,9 @@
 
 </head>
 
+<div id="app.page" content="home"></div>
 
-<body class="slider-collapse">
+<body class="slider-collapse" ng-controller="homeController">
 
 	<div id="site-content">
 		<div class="site-header">
@@ -39,8 +40,31 @@
 
 				<div class="right-section pull-right">
 					<a href="cart.html" class="cart" id="header">
-						<i class="icon-cart"></i>Itens no Carrinho</a>
-						<a href="#" class="login-button" id="header.login">Logar / Cadastrar</a>
+						<i class="icon-cart"></i>Itens no Carrinho
+					</a>
+					<a href="account.html" class="cart" id="header" ng-if="">
+						Minha conta
+					</a>
+					<a href="#" class="login-button" id="header.login">Logar / Cadastrar</a>
+				</div>
+				<div class="main-navigation">
+					<button class="toggle-menu">
+						<i class="fa fa-bars"></i>
+					</button>
+					<ul class="menu">
+						<li class="menu-item home current-menu-item">
+							<a href="index.html">
+								<i class="icon-home"></i>
+							</a>
+						</li>
+					</ul>
+					<div class="search-form">
+						<label>
+							<img src="images/icon-search.png">
+						</label>
+						<input type="text" ng-model="search" placeholder="Pesquisar jogos...">
+					</div>
+					<div class="mobile-navigation"></div>
 				</div>
 			</div>
 		</div>
@@ -53,14 +77,34 @@
 							<h2 class="section-title">Jogos Disponíveis</h2>
 						</header>
 
-						<div id="product-list" class="product-list"></div>
+						<div class="product-list">
+							<div class="product" ng-repeat="product in products | filter:search">
+								<div class="inner-product">
+									<div class="figure-image">
+										<a href="single.html">
+											<img src="{{product.image}}" alt="Game 1">
+										</a>
+									</div>
+									<h3 class="product-title">
+										<a href="#">{{product.title}}</a>
+									</h3>
+									<small class="price">R$ {{product.price.toFixed(2)}}</small>
+									<p> {{product.description}}</p>
+									<center>
+										<button class="button" ng-click='add(product.id,1)'>Adicionar ao Carrinho</button>
+									</center>
+								</div>
+							</div>
+						</div>
 					</section>
 				</div>
 			</div>
 		</main>
 
 		<div class="site-footer">
-			<center><div class="copy">Copyright 2018 Game Store. Todos os direitos reservados.</div></center>
+			<center>
+				<div class="copy">Copyright 2018 Game Store. Todos os direitos reservados.</div>
+			</center>
 		</div>
 	</div>
 
@@ -76,7 +120,7 @@
 				<form action="#">
 					<input type="text" placeholder="Email" id="customer.login.email">
 					<input type="password" placeholder="Senha" id="customer.login.password">
-					<input type="submit" value="Login" onclick="session.login()">
+					<input type="submit" value="Login" onclick="session.login();">
 				</form>
 			</div>
 			<div class="col-md-6">
@@ -93,7 +137,10 @@
 
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/plugins.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script src="js/app.js"></script>
+	<script src="js/service/service.js"></script>
+	<script src="js/controller/home-controller.js"></script>
 	<script src="js/min/toastr.min.js"></script>
 
 </body>
