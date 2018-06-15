@@ -42,16 +42,16 @@ public class BasketController {
         return this.basketService.addProduct(request);
     }
 
-    @GetMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public BasketProductResponse customerProducts(HttpServletRequest httpServletRequest) {
         return this.basketService.customerProducts(this.sessionManager.checkAuthorization(httpServletRequest).getCustomer().getId());
     }
 
-    @PostMapping(path = "/finish", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Sale finish(HttpServletRequest httpServletRequest) {
+    @PostMapping(path = "/finish", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void finish(HttpServletRequest httpServletRequest) {
         Session session = this.sessionManager.checkAuthorization(httpServletRequest);
 
-        return this.saleService.finish(session.getCustomer().getId());
+        this.saleService.finish(session.getCustomer().getId());
     }
 
 }

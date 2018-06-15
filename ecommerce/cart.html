@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="cartModule">
 
 <head>
 	<meta charset="UTF-8">
@@ -24,7 +24,7 @@
 
 </head>
 
-<body>
+<body ng-controller="cartController">
 
 
 	<div id="app.page" content="cart"></div>
@@ -76,7 +76,7 @@
 							</p>
 							<p>
 								<a href="index.html" class="button muted">Continuar Comprando</a>
-								<a href="#" class="button login-button">Finalizar e Pagar</a>
+								<a href="#" class="button login-button" ng-click="">Finalizar e Pagar</a>
 							</p>
 						</center>
 					</div>
@@ -99,7 +99,7 @@
 						<input type="text" placeholder="Mês">
 						<input type="text" placeholder="Ano">
 						<input type="text" placeholder="CVV">
-						<input type="submit" value="Finalizar" onclick="">
+						<input type="button" value="Finalizar" ng-click="finish();">
 					</form>
 				</div>
 			</div>
@@ -113,7 +113,9 @@
 
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/plugins.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 		<script src="js/app.js"></script>
+		<script src="js/controller/cart-controller.js"></script>
 
 </body>
 

@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -35,15 +34,6 @@ public class Sale {
     @Column(name = "RESPONSE")
     private String response;
 
-    @NotNull
-    @DecimalMin("0.00")
-    @Column(name = "AMOUNT")
-    private BigDecimal amount;
-
-    @NotNull
-    @Column(name = "DATE_CREATED", updatable = false)
-    private LocalDateTime dateCreated;
-
     /**
      * @author leonardo.carmona
      */
@@ -51,7 +41,7 @@ public class Sale {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class SaleResponse {
+    public static class Response {
 
         private List<Product> products = new ArrayList<>();
 
@@ -59,21 +49,15 @@ public class Sale {
          * @author leonardo.carmona
          */
         @Data
-        @NoArgsConstructor
-        @AllArgsConstructor
-        @Builder
         public static class Product {
 
-            private Long       id;
-            private String     title;
-            private BigDecimal price;
-            private Integer    quantity;
-            private String     description;
-            private String     image;
-
-            public BigDecimal getTotal() {
-                return this.price.multiply(new BigDecimal(quantity));
-            }
+            private Long          id;
+            private String        title;
+            private BigDecimal    price;
+            private String        description;
+            private String        image;
+            private String        serial;
+            private LocalDateTime time;
 
         }
 

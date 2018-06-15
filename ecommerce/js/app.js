@@ -320,16 +320,13 @@ var session = {
 					itensQuantity: data.itensQuantity
 				}));
 				location.reload();
-				loadHeader();
-				// $(".popup").toggleClass("active");
-				// toastr.success('Login realizado com sucesso!');
 			},
 			error: function (error) {
-				// if (error.status == 401) {
-				// 	toastr.error('O login ou senha estão incorretos!');
-				// } else {
-				// 	toastr.error('Ocorreu um erro ao ao se logar!');
-				// }
+				if (error.status == 401) {
+					toastr.error('O login ou senha estão incorretos!');
+				} else {
+					toastr.error('Ocorreu um erro ao ao se logar!');
+				}
 			}
 		});
 	},
