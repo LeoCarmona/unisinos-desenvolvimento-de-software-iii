@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS public.CUSTOMER (
 CREATE TABLE IF NOT EXISTS public.PRODUCT (
     ID                 BIGSERIAL       NOT NULL PRIMARY KEY,
     TITLE              VARCHAR(255)    NOT NULL,
+	PLATFORM           VARCHAR(255)    NOT NULL,
     PRICE              DECIMAL         NOT NULL,
 	DESCRIPTION        TEXT            NOT NULL,
     IMAGE              VARCHAR(255)    NOT NULL

@@ -68,8 +68,6 @@ function loadHeader() {
 	if (session.token == null) {
 		return;
 	}
-	
-	console.log(app.getPage());
 
 	switch (app.getPage()) {
 		case 'home':
@@ -214,7 +212,7 @@ var basketService = {
 				xhr.setRequestHeader('Authorization', _session.token);
 			},
 			success: function (data) {
-				console.log(data);
+				
 			},
 			error: function (error) {
 				toastr.error('Ocorreu um erro ao adicionar o produto!');

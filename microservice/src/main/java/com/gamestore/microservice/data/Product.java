@@ -29,6 +29,10 @@ public class Product {
     @Column(name = "TITLE")
     private String title;
 
+    @NotBlank
+    @Column(name = "PLATFORM")
+    private String platform;
+
     @NotNull
     @DecimalMin("0.00")
     @Column(name = "PRICE")

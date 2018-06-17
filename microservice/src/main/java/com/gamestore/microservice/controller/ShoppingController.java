@@ -1,6 +1,6 @@
 package com.gamestore.microservice.controller;
 
-import com.gamestore.microservice.data.rest.ShoppingResponse;
+import com.gamestore.microservice.data.rest.shopping.ShoppingResponse;
 import com.gamestore.microservice.service.ShoppingService;
 import com.gamestore.microservice.session.Session;
 import com.gamestore.microservice.session.SessionManager;

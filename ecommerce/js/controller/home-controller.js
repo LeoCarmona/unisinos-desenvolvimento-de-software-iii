@@ -42,5 +42,9 @@ homeModule.controller('homeController', function ($scope, $http) {
 
     }
 
+    $scope.isLogged = function() {
+        return session.data().token != null;
+    }
+
     init();
 });

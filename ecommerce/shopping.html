@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="homeModule" lang="en">
+<html ng-app="shoppingModule" lang="en">
 
 <head>
 	<meta charset="UTF-8">
@@ -25,7 +25,7 @@
 
 <div id="app.page" content="home"></div>
 
-<body class="slider-collapse" ng-controller="homeController">
+<body class="slider-collapse" ng-controller="shoppingController">
 
 	<div id="site-content">
 		<div class="site-header">
@@ -74,7 +74,7 @@
 				<div class="page">
 					<section>
 						<header>
-							<h2 class="section-title">Jogos Disponíveis</h2>
+							<h2 class="section-title">Compras Realizadas</h2>
 						</header>
 
 						<div class="product-list">
@@ -82,16 +82,20 @@
 								<div class="inner-product">
 									<div class="figure-image">
 										<a href="single.html">
-											<img src="{{product.image}}" width="204px" height="234px" alt="Game 1">
+											<img src="{{product.image}}" alt="Game 1">
 										</a>
 									</div>
 									<h3 class="product-title">
 										<a href="#"><center>{{product.title}}</center></a>
 									</h3>
 									<small class="price"><center>R$ {{product.price.toFixed(2)}}</center></small>
-									<center><p>{{product.platform}}</p></center>
 									<center>
-										<button class="button" ng-click='add(product.id,1)'>Adicionar ao Carrinho</button>
+										<p><b>Plataforma</b></p>
+										<p>{{product.platform}}</p>
+										<p><b>Data de Compra</b></p>
+										<p>{{product.time}}</p>
+										<p><b>Chave</b></p>
+										<p>{{product.serial}}</p>
 									</center>
 								</div>
 							</div>
@@ -129,7 +133,7 @@
 					<input type="text" placeholder="Email" id="customer.register.email">
 					<input type="text" placeholder="Nome" id="customer.register.name">
 					<input type="text" placeholder="Senha" id="customer.register.password">
-					<input type="text" class="button" value="Cadastrar" onclick="customerService.register()">
+					<input type="submit" value="Cadastrar" onclick="customerService.register()">
 				</form>
 			</div>
 		</div>
@@ -139,7 +143,7 @@
 	<script src="js/plugins.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script src="js/app.js"></script>
-	<script src="js/controller/home-controller.js"></script>
+	<script src="js/controller/shopping-controller.js"></script>
 	<script src="js/min/toastr.min.js"></script>
 
 </body>

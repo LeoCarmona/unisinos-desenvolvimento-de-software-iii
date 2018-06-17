@@ -58,6 +58,7 @@ public class SaleService {
         }
 
         this.saleRepository.save(sale);
+        this.jdbcTemplate.execute("delete from basket where customer_id = " + customerId);
     }
 
     protected List<Sale.Response.Product> createSaleResponse(Long customerId) {
@@ -71,17 +72,22 @@ public class SaleService {
         LocalDateTime now = LocalDateTime.now();
 
         this.jdbcTemplate.query(sql, args, rs -> {
-            Sale.Response.Product product = new Sale.Response.Product();
+            int quantity = rs.getInt("quantity");
 
-            product.setId(rs.getLong("id"));
-            product.setTitle(rs.getString("title"));
-            product.setPrice(rs.getBigDecimal("price"));
-            product.setDescription(rs.getString("description"));
-            product.setImage(rs.getString("image"));
-            product.setSerial(UUID.randomUUID().toString());
-            product.setTime(now);
+            for (int i = 0; i < quantity; i++) {
+                Sale.Response.Product product = new Sale.Response.Product();
 
-            response.getProducts().add(product);
+                product.setId(rs.getLong("id"));
+                product.setTitle(rs.getString("title"));
+                product.setPlatform(rs.getString("platform"));
+                product.setPrice(rs.getBigDecimal("price"));
+                product.setDescription(rs.getString("description"));
+                product.setImage(rs.getString("image"));
+                product.setSerial(UUID.randomUUID().toString());
+                product.setTime(now);
+
+                response.getProducts().add(product);
+            }
         });
 
         return response.getProducts();

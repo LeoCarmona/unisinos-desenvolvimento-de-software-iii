@@ -53,6 +53,7 @@ public class Sale {
 
             private Long          id;
             private String        title;
+            private String        platform;
             private BigDecimal    price;
             private String        description;
             private String        image;

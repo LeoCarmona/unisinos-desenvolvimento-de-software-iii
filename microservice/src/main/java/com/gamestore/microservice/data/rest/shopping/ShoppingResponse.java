@@ -1,4 +1,4 @@
-package com.gamestore.microservice.data.rest;
+package com.gamestore.microservice.data.rest.shopping;
 
 import lombok.Data;
 
@@ -17,6 +17,7 @@ public class ShoppingResponse {
     public static class Product {
 
         private Long          id;
+        private String        platform;
         private String        title;
         private BigDecimal    price;
         private String        description;

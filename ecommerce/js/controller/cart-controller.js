@@ -11,14 +11,17 @@ cartModule.controller('cartController', function ($scope, $http) {
                 xhr.setRequestHeader('Authorization', _session.token);
             },
             success: function (data) {
-                console.log(data);
-                // toastr.success('Compra realizada com sucesso!');
+                window.open("./shopping.html","_self")
             },
             error: function (error) {
-                console.log(error);
-                // toastr.success('Compra realizada com sucesso!!');
+                toastr.success('Ocorreu um erro ao realizar a compra!');
             }
         });
 
     }
+
+    $scope.isLogged = function() {
+        return session.data().token != null;
+    }
+    
 });
