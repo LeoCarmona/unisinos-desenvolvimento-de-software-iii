@@ -72,7 +72,7 @@ function loadHeader() {
 	switch (app.getPage()) {
 		case 'home':
 			let loginElement = document.getElementById('header.login');
-			let logoutElement = htmlService.htmlToElement('<a href="index.html" onclick="session.logout()">Logout <small>(' + session.customer.email + ')</small></a>');
+			let logoutElement = htmlService.htmlToElement('<a href="index.html" id="header.logout" onclick="session.logout()">Logout <small>(' + session.customer.email + ')</small></a>');
 
 			loginElement.parentNode.insertBefore(logoutElement, loginElement.nextSibling);
 			loginElement.remove();

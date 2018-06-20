@@ -120,7 +120,7 @@
 				<form action="#">
 					<input type="text" placeholder="Email" id="customer.login.email">
 					<input type="password" placeholder="Senha" id="customer.login.password">
-					<input type="button" class="button" value="Login" onclick="session.login();">
+					<input type="button" class="button" value="Login" id="customer.login.submit" onclick="session.login();">
 				</form>
 			</div>
 			<div class="col-md-6">
@@ -128,8 +128,8 @@
 				<form action="#">
 					<input type="text" placeholder="Email" id="customer.register.email">
 					<input type="text" placeholder="Nome" id="customer.register.name">
-					<input type="text" placeholder="Senha" id="customer.register.password">
-					<input type="text" class="button" value="Cadastrar" onclick="customerService.register()">
+					<input type="password" placeholder="Senha" id="customer.register.password">
+					<input type="button" class="button" value="Cadastrar" onclick="customerService.register()">
 				</form>
 			</div>
 		</div>
